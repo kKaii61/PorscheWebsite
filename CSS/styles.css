@@ -9,7 +9,7 @@ BODY {
 
 #porsche-logo {
     position: absolute;
-    top: 7.4%;
+    top: 8%;
 }
 
 .colu {
@@ -22,6 +22,7 @@ BODY {
     z-index: -1;
     right: 0;
     bottom: 0;
+    background-color: #000000;
     min-width: 100%;
     min-height: 100%;
     -o-filter: blur(5px);
@@ -98,6 +99,7 @@ h1 {
 #bg {
     width: 923px;
     height: 41px;
+    background-color: #aa1416;
     background-image: url(/Images/red-background-menu.png);
     background-repeat: repeat-x;
     margin: 0 auto;
@@ -239,7 +241,11 @@ h3 {
     text-decoration: none;
 }
 
-#content {
+#content-home,
+#content-about,
+#content-service,
+#content-product,
+#content-contact {
     flex-direction: column;
     width: 700px;
     min-height: 747px;
@@ -248,20 +254,24 @@ h3 {
     float: left;
 }
 
-#content img {
+#content-home img {
     width: 150px;
     border: 2px solid #cccccc;
     margin: 10px;
     float: right;
 }
 
-#content h2 {
+#content-home h2,
+#content-about h2,
+#content-service h2,
+#content-product h2,
+#content-contact h2 {
     margin-top: 20px;
 }
 
 #main {
     text-align: justify;
-    padding: 20px;
+    padding: 5px 15px;
     text-decoration: none;
     color: #B8D731;
 }
@@ -278,7 +288,7 @@ h4 {
     background-color: #333333;
 }
 
-#content #main p {
+#main p {
     color: #ffffff;
 }
 
@@ -295,6 +305,7 @@ a:hover {
 .footer-container {
     position: relative;
     display: flex;
+    background-color: #aa1416;
     background-image: url(/Images/red-background-menu.png);
     justify-content: center;
     align-items: center;
@@ -348,4 +359,26 @@ a:hover {
     text-shadow: 2px 2px red;
 }
 
+[data-tab-content] {
+    display: none;
+}
 
+.active[data-tab-content] {
+    display: grid;
+}
+
+.main-content h2 {
+    font-size: 20px;
+    color: rgb(222, 246, 150);
+    font-weight: 900;
+    text-shadow: 2px 2px red;
+}
+
+.main-content p {
+    font-size: 15px; 
+    line-height: 1.5;
+}
+
+.hide {
+    display: none;
+}

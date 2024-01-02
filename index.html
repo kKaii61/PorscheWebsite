@@ -5,18 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>21H1120041</title>
     <link rel="stylesheet" href="/CSS/styles.css" />
-    <link rel="stylesheet" href="/js/script.js" defer>
+    <script src="/js/script.js" defer></script>
   </head>
   <body>
+    <!-- HEADER -->
     <div class="outer">
       <video autoplay muted loop id="bg-video">
-        <source
-          src="./video/Porsche 992 GT3 Touring - Night Vibes 4K.mp4"
-          type="video/mp4"
-        />
+        <source src="./video/bg-video.p4" type="video/mp4" />
+        <!-- fix mp4 to the video tag upon-->
       </video>
       <div id="logo-bg">
-        <img src="/Images/Porsche-Logo.png" width="150" height="75" alt="" id="porsche-logo">
+        <img
+          src="/Images/Porsche-Logo.png"
+          width="150"
+          height="75"
+          alt=""
+          id="porsche-logo"
+        />
         <h1>Porsche</h1>
         <span class="tag"> There is no substitute. </span>
       </div>
@@ -24,26 +29,37 @@
 
       <div class="clear"></div>
       <div id="bg" class="top-bg">
-        <div class="toplinks"><a class="ta active" href="#">Homepage</a></div>
+        <div class="toplinks">
+          <a class="ta active" data-tab-target="#content-home" href="#"
+            >Homepage</a
+          >
+        </div>
         <div class="sap">|</div>
-        <div class="toplinks"><a class="ta" href="#">About us</a></div>
+        <div class="toplinks">
+          <a class="ta" data-tab-target="#content-about" href="#">About us</a>
+        </div>
         <div class="sap">|</div>
-        <div class="toplinks"><a class="ta" href="#">Products</a></div>
+        <div class="toplinks">
+          <a class="ta" data-tab-target="#content-product" href="#">Products</a>
+        </div>
         <div class="sap">|</div>
-        <div class="toplinks"><a class="ta" href="#">Services</a></div>
+        <div class="toplinks">
+          <a class="ta" data-tab-target="#content-service" href="#">Services</a>
+        </div>
         <div class="sap">|</div>
-        <div class="toplinks"><a class="ta" href="#">Contact us</a></div>
+        <div class="toplinks">
+          <a class="ta" data-tab-target="#content-contact" href="#"
+            >Contact us</a
+          >
+        </div>
       </div>
       <div class="clear"></div>
       <div id="outer2"></div>
 
       <div id="outer2" class="colu">
-        <!-- Định dạng khung nội dung phần thân  -->
         <div id="left-nav" style="text-align: center">
-          <!-- Định dạng khung bên trái  -->
           <h2 style="padding: 0 0 0 0">Vehicle Showcases</h2>
           <div id="showcase">
-            <!-- Định dạng khung sản phẩm bên trái  -->
             <div class="stxt-bg">
               <h3>Porsche 911 GT3 RS</h3>
               <div class="smaltext">
@@ -66,7 +82,6 @@
           </div>
 
           <div id="showcase">
-            <!-- Định dạng khung sản phẩm bên trái  -->
             <div class="stxt-bg">
               <h3>Taycan Turbo S</h3>
               <div class="smaltext">
@@ -90,7 +105,6 @@
           </div>
 
           <div id="showcase">
-            <!-- Định dạng khung sản phẩm bên trái  -->
             <div class="stxt-bg">
               <h3>Porsche Panamera</h3>
               <div class="smaltext">
@@ -113,14 +127,17 @@
           </div>
         </div>
 
-        <div id="content" class="colu">
+        <!-- THE RIGHT COLUMN-->
+
+        <!-- HOME -->
+        <div id="content-home" data-tab-content class="main-content active">
           <h2>Welcome to Porsche Website!</h2>
+          <p style="padding: 5px 20px">
+            The Porsche website is more than just a virtual showroom; it's a
+            meticulously crafted experience that celebrates the iconic brand
+            and its passionate community.
+          </p>
           <div id="main">
-            <p>
-              The Porsche website is more than just a virtual showroom; it's a
-              meticulously crafted experience that celebrates the iconic brand
-              and its passionate community.
-            </p>
 
             <h4>2023 Porsche 718 Cayman: What’s New</h4>
             <a href="#"
@@ -184,6 +201,84 @@
               fielding 992-generation 911 GT3 Cup cars.
               <span class="read-more"><a href="#"> Read More </a></span>
             </p>
+          </div>
+        </div>
+        <!-- ABOUT -->
+        <div id="content-about" data-tab-content class="main-content">
+          <div id="main">
+            <h2>Who we are</h2>
+            <p class="bottom-space" >
+              <a href="https://www.porsche.com/usa">Porsche.com</a> is a&nbsp;leading
+              digital marketplace and solutions provider for the automotive
+              industry that connects car shoppers with sellers. Launched in 1998
+              and headquartered in&nbsp;Chicago, the Company empowers shoppers
+              with the data, resources and digital tools needed to make informed
+              buying decisions and seamlessly connect with automotive retailers.
+              In a rapidly changing market,
+              <a href="https://www.porsche.com/usa">Porsche.com</a> enables dealerships and
+              OEMs with innovative technical solutions and data-driven
+              intelligence to better reach and influence ready-to-buy shoppers,
+              increase inventory turn and gain market share.&nbsp;In 2018,
+              <a href="https://www.porsche.com/usa">Porsche.com</a>
+              acquired Dealer Inspire®, an&nbsp;innovative technology company
+              building solutions that future-proof dealerships with more
+              efficient operations, a faster and easier car buying process, and
+              connected digital experiences that sell and service more vehicles.
+            </p>
+          </div>
+        </div>
+        <!-- PRODUCTS -->
+        <div id="content-product" data-tab-content class="main-content">
+          <div id="main">
+            <h2>LIST</h2>
+           
+          </div>
+        </div>
+        <!-- SERVICES -->
+        <div id="content-service" data-tab-content class="main-content">
+          <div id="main">
+            <h2>Our services</h2>
+            <p>
+              Cars.com invented car search. Our site and innovative solutions
+              connect buyers and sellers to match people with their perfect car.
+              With our people spread across the U.S. we still maintain a startup
+              culture with innovation and passion for our people at the core of
+              everything we do.
+            </p>
+            <p>
+              Cars.com has an award-winning brand, leadership team, and the best
+              and brightest employees in the industry. We’ve been featured as
+              one of the top places to work by The Chicago Tribune, Built in
+              Chicago, Chicago Innovation, and U.S. News & World Report.
+            </p>
+          </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div id="content-contact" data-tab-content class="main-content">
+          <div id="main">
+            <h2>Our social media</h2>
+            <!--  -->
+            <div class="contact-section">
+              <div class="sds-page-section contact-layout">
+                  <div class="contact-heading">
+                    <h2 class="spark-heading-2 sds-page-section__title contact-section-header">Contact us today</h2>
+                  </div>
+                <div class="button-container">
+                  <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16" width="16"><use xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-message"></use></svg>Chat
+                  </h3>
+                  <div class="avaamo-chat-bot-container">
+                    <div id="avaamo-chat-bot-button" class="sds-button--secondary contact-button" trid="e877e18b-2cad-4ace-abb7-9225ea983fd4" trc="">Start chat</div>
+                  </div>
+                </div>
+                <div class="divider"></div>
+                <div class="button-container">
+                  <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16" width="16"><use xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-mail"></use></svg>Feedback</h3>
+            <a class="sds-button--secondary contact-button" data-toggle="modal" data-target="#qualtrics-modal" href="#" data-modal-registered="1">Leave feedback</a>
+                </div>
+              </div>
+            </div>
+            <!--  -->
           </div>
         </div>
       </div>
