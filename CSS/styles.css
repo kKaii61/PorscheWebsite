@@ -382,3 +382,79 @@ a:hover {
 .hide {
     display: none;
 }
+
+
+.left {
+    float: left;
+    width: 26% !important;
+    background-color: #ffffff;
+}
+
+.right {
+    width: 74% !important;
+    background-color: #ffffffcd;
+}
+
+
+.product-list-container {
+    padding: 10px 10px 10px 10px;
+    gap: 10px;
+    align-items: center;
+    justify-content: start;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 214px;
+    height: 200px;
+    border-radius: 2px;
+    background-color: #90436a;
+    text-align: center;
+}
+
+.product-card img {
+    width: 200px;
+    height: fit-content;
+}
+
+.product-card h5 {
+    font-size: 2em;
+    line-height: 0;
+    margin: 0;
+}
+
+.category-list-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.category-list-container button {
+    position: relative;
+    margin-left: 1px;
+    padding: 1px 0 1px 0;
+    width: 98%;
+    height: 77px;
+    text-align: left;
+    margin-bottom: 10px;
+    background-color: #ca8c8c00;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.category-list-container button:hover {
+    backdrop-filter: blur(16px);
+    background-color: rgba(148, 149, 152, 0.18);
+}
+
+.category-img img {
+    position: absolute;
+    left:  5px;
+    height: 26px;
+}
+.category-arrow img {
+    float: right;
+    height: 24px;
+    width: 24px;
+}
