@@ -85,7 +85,7 @@ h1 {
     width: 490px;
     height: 256px;
     right: 0;
-    background-image: url(/Images/Header-Car.png);
+    background-image: url(../Images/Header-Car.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -100,7 +100,7 @@ h1 {
     width: 923px;
     height: 41px;
     background-color: #aa1416;
-    background-image: url(/Images/red-background-menu.png);
+    background-image: url(../Images/red-background-menu.png);
     background-repeat: repeat-x;
     margin: 0 auto;
 }
@@ -126,6 +126,13 @@ h1 {
 .toplinks a:hover {
     color: #f05555;
     text-decoration: none;
+}
+
+.member {
+    margin: 0 10px;
+    float: right;
+    display: flex;
+    flex-direction: row;
 }
 
 /* Định dạng kẻ dọc ngăn cách các item Menu  */
@@ -276,6 +283,16 @@ h3 {
     color: #B8D731;
 }
 
+.login-containter,
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    height: 500px;
+}
+
 h4 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff000;
@@ -306,7 +323,7 @@ a:hover {
     position: relative;
     display: flex;
     background-color: #aa1416;
-    background-image: url(/Images/red-background-menu.png);
+    background-image: url(../Images/red-background-menu.png);
     justify-content: center;
     align-items: center;
     max-width: 923.8px;

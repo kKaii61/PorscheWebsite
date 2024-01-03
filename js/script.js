@@ -2,6 +2,8 @@ const tabs = document.querySelectorAll('[data-tab-target]');
 const tabContents = document.querySelectorAll('[data-tab-content');
 const leftnav = document.getElementById('left-nav');
 const prod = document.getElementById('content-product');
+const log = document.getElementById('content-login');
+const reg = document.getElementById('content-register');
 
 tabs.forEach( tab => {
     tab.addEventListener('click', () => {
@@ -12,7 +14,7 @@ tabs.forEach( tab => {
         tabs.forEach(tab => {
             tab.classList.remove('active');
         })
-        if(target == prod) {
+        if(target == prod || target == log || target == reg) {
             leftnav.classList.add('hide');
         } else {
             leftnav.classList.remove('hide');
