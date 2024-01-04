@@ -1,9 +1,10 @@
 <?php
-function linkResource($rel, $href)
-{
-  echo "<link rel='{$rel}' href='{$href}'>";
-}
+session_start();
+//include("auth_session.php");
 $name = "Guest";
+if (isset($_SESSION['username'])) {
+  $name = trim(stripslashes($_SESSION['username']));
+}
 ?>
 
 <!DOCTYPE html>
@@ -24,11 +25,8 @@ $name = "Guest";
       <source src="./video/bg-video.p4" type="video/mp4" />
       <!-- fix mp4 to the video tag upon-->
     </video>
-    <div id="logo-bg">
-      <img src="Images/Porsche-Logo.png" width="150" height="75" alt="" id="porsche-logo" />
-      <h1>Porsche</h1>
-      <span class="tag"> There is no substitute. </span>
-    </div>
+    
+    <div id="logo-bg"></div>
     <div id="business"></div>
 
     <div class="clear"></div>
@@ -57,12 +55,34 @@ $name = "Guest";
         <div class="toplinks">
           <p style="padding: 0; margin: 0;"> Welcome <?php echo ("$name") ?> ! </p>
         </div>
-        <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-          <a class="ta" data-tab-target="#content-login" href="#login">Login</a>
+
+        <?php if ($name !== "Guest") { ?>
+          <!-- -->
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+            <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+          </div>
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+            <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+          </div>
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+          <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
         </div>
-        <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-          <a class="ta" data-tab-target="#content-register" href="#register">Register</a>
+          <!-- -->
+        <?php  } else { ?>
+          <!-- -->
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+            <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+          </div>
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+            <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+          </div>
+          <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+          <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
         </div>
+          <!-- -->
+        <?php } ?>
+
+        
       </div>
     </div>
     <div class="clear"></div>
@@ -356,64 +376,6 @@ $name = "Guest";
         </div>
       </div>
 
-      <!-- LOGIN -->
-      <div id="content-login" data-tab-content class="main-content">
-        <div id="main">
-          <div class="login-containter">
-
-            <h2>LOGIN</h2>
-            <form action="login.php" method="post">
-              <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-              </div>
-              <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-              </div>
-              <section>
-                <button type="submit">Login</button>
-              </section>
-            </form>
-
-          </div>
-        </div>
-      </div>
-      <!-- REGISTER -->
-      <div id="content-register" data-tab-content class="main-content">
-        <div id="main">
-          <div class="register-container">
-            <h2>REGISTER</h2>
-            <form action="register.php" method="post">
-              <div>
-                <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
-              </div>
-              <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-              </div>
-              <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-              </div>
-              <div>
-                <label for="password2">Password Again:</label>
-                <input type="password" name="password2" id="password2">
-              </div>
-              <div>
-                <label for="agree">
-                  <input type="checkbox" name="agree" id="agree" value="yes" /> I agree
-                  with the
-                  <a class="term" href="#" title="term of services">term of services</a>
-                </label>
-              </div>
-              <button type="submit">Register</button>
-            </form>
-
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="clear"></div>

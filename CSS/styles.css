@@ -40,20 +40,8 @@ BODY {
 }
 
 /* Tên Công Ty */
-#logo-bg {
-    width: 340px;
-    height: 220px;
-    float: left;
-    padding-left: 20px;
-}
 
-#logo-bg h1 {
-    position: absolute;
-    right: 67%;
-    top: 1%;
-    font-weight: 800;
-    text-shadow: 3px 3px 5px darkred;
-}
+
 
 .tag {
     position: absolute;
@@ -79,12 +67,25 @@ h1 {
 
 
 /* Định dạng Banner */
+#logo-bg {
+    margin-top: 70px;
+    width: 340px;
+    height: 180px;
+    padding-left: 20px;
+    background-image: url(../Images/logo.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
 #business {
     position: absolute;
     z-index: -1;
     width: 490px;
     height: 256px;
-    right: 0;
+    right: -70px;
+    top: -58px;
     background-image: url(../Images/Header-Car.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -126,6 +127,8 @@ h1 {
 .toplinks a:hover {
     color: #f05555;
     text-decoration: none;
+    position: relative;
+    z-index: 9999999;
 }
 
 .member {
@@ -481,4 +484,36 @@ a:hover {
 
 .term:hover {
     color: red !important;
+}
+
+.hide {
+    display: none;
+}
+
+.noti-member {
+    width: 200px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    background-color: rgb(251, 251, 251);
+    border-radius: 5px;
+    border: solid black;
+}
+
+.noti-member h3 {
+    color: red;
+}
+
+.register-noti {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    height: 500px;
+}
+
+.register-noti h3 {
+    background-color: none;
 }
