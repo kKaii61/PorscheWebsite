@@ -280,7 +280,6 @@ h3 {
     text-align: justify;
     padding: 5px 15px;
     text-decoration: none;
-    color: #B8D731;
 }
 
 .login-containter,
@@ -474,4 +473,12 @@ a:hover {
     float: right;
     height: 24px;
     width: 24px;
+}
+
+.term {
+    color: #fff !important;
+}
+
+.term:hover {
+    color: red !important;
 }

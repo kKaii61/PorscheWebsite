@@ -5,6 +5,7 @@ function linkResource($rel, $href)
 }
 $name = "Guest";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -362,11 +363,11 @@ $name = "Guest";
 
             <h2>LOGIN</h2>
             <form action="login.php" method="post">
-              <div class="input-text">
+              <div>
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username">
               </div>
-              <div class="input-text">
+              <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password">
               </div>
@@ -384,21 +385,30 @@ $name = "Guest";
           <div class="register-container">
             <h2>REGISTER</h2>
             <form action="register.php" method="post">
-              <div class="input-text">
+              <div>
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username">
               </div>
-              <div class="input-text">
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email">
+              </div>
+              <div>
                 <label for="password">Password:</label>
                 <input type="password" name="password" id="password">
               </div>
-              <div class="input-text">
-                <label for="password">Retype Password:</label>
-                <input type="password" name="password" id="password">
+              <div>
+                <label for="password2">Password Again:</label>
+                <input type="password" name="password2" id="password2">
               </div>
-              <section>
-                <button type="submit">Register</button>
-              </section>
+              <div>
+                <label for="agree">
+                  <input type="checkbox" name="agree" id="agree" value="yes" /> I agree
+                  with the
+                  <a class="term" href="#" title="term of services">term of services</a>
+                </label>
+              </div>
+              <button type="submit">Register</button>
             </form>
 
           </div>
