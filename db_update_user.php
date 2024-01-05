@@ -50,6 +50,12 @@ if (isset($_SESSION['username'])) {
             <div class="toplinks">
                 <a class="ta" data-tab-target="#content-contact" href="index.php">Contact us</a>
             </div>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
+            <div class="sap">|</div>
+            <div class="toplinks">
+                <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
+            </div>
+            <?php } ?>
 
             <div class="member">
                 <div class="toplinks">
@@ -57,29 +63,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php  } else { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php } ?>
 
 
@@ -113,39 +119,41 @@ if (isset($_SESSION['username'])) {
                             $stmt->execute([$id]);
                         ?>
 
-                            <div class="admin-toolbar-container">
-                                <h2>UPDATE PRODUCT SUCCESSFULLY!</h2>
-                            </div>
-                            <script>
-                                setTimeout(function() {
-                                    window.location.href = "admin.php";
-                                }, 1000); // Delay in milliseconds
-                            </script>
+                        <div class="admin-toolbar-container">
+                            <h2>UPDATE PRODUCT SUCCESSFULLY!</h2>
+                        </div>
+                        <script>
+                        setTimeout(function() {
+                            window.location.href = "admin.php";
+                        }, 1000); // Delay in milliseconds
+                        </script>
 
                         <?php        } else { ?>
 
 
 
-                            <h2>UPDATE USER</h2>
-                            <p>Please change product information in this form and submit to update product to the database.</p>
-                            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="username" class="form-control" value="<?= $result['username'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>email</label>
-                                    <input type="text" name="email" class="form-control" value="<?= $result['email'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Admin?</label>
-                                    <input type="radio" id="true" name="admin" value="1">
-                                    <label for="true">Yes</label><br>
-                                    <input type="radio" id="false" name="admin" value="0">
-                                    <label for="false">No</label><br>
-                                </div>
-                                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
-                            </form>
+                        <h2>UPDATE USER</h2>
+                        <p>Please change product information in this form and submit to update product to the database.
+                        </p>
+                        <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="username" class="form-control"
+                                    value="<?= $result['username'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>email</label>
+                                <input type="text" name="email" class="form-control" value="<?= $result['email'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Admin?</label>
+                                <input type="radio" id="true" name="admin" value="1">
+                                <label for="true">Yes</label><br>
+                                <input type="radio" id="false" name="admin" value="0">
+                                <label for="false">No</label><br>
+                            </div>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        </form>
                         <?php } ?>
                     </div>
 

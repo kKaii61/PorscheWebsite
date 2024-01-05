@@ -50,6 +50,12 @@ if (isset($_SESSION['username'])) {
             <div class="toplinks">
                 <a class="ta" data-tab-target="#content-contact" href="index.php">Contact us</a>
             </div>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
+            <div class="sap">|</div>
+            <div class="toplinks">
+                <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
+            </div>
+            <?php } ?>
 
             <div class="member">
                 <div class="toplinks">
@@ -57,29 +63,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php  } else { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php } ?>
 
 
@@ -98,56 +104,86 @@ if (isset($_SESSION['username'])) {
                     <div class="admin-toolbar-container">
                         <?php
                         require('db_conn.php');
-                        $id = $_GET['update'];
-                        $sql = "SELECT * FROM productdb WHERE productId=?";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->execute([$id]);
-                        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the result as an associative array
 
                         if (isset($_POST['submit'])) {
-                            $product_name = trim(stripslashes($_POST['name']));
-                            $product_model = trim(stripslashes($_POST['model']));
-                            $product_price = trim(stripslashes($_POST['price']));
-                            $product_image = trim(stripslashes($_POST['image']));
-                            $sql = "UPDATE productdb SET productModel = '$product_model', productName = '$product_name', productPrice = '$product_price' WHERE `productdb`.`productId` = ?;";
+                            // Bước 2: Xác định đường dẫn lưu trữ ảnh trên máy chủ
+                            $uploadDir = "./Images/";
+                            $uploadedFile = $uploadDir . basename($_FILES["image"]["name"]);
+                            
+                            // Bước 3: Di chuyển tệp ảnh đã tải lên vào thư mục lưu trữ
+                            if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadedFile)) {
+                                // Bước 4: Sử dụng câu lệnh chuẩn bị để tránh SQL Injection
+                                $product_name = trim(stripslashes($_POST['name']));
+                                $product_model = trim(stripslashes($_POST['model']));
+                                $product_price = trim(stripslashes($_POST['price']));
+                                
+                                // Bước 5: Cập nhật thông tin sản phẩm trong cơ sở dữ liệu
+                                $sql = "UPDATE `productdb` SET `productModel` = :product_model, 
+                                        `productName` = :product_name, 
+                                        `productPrice` = :product_price,
+                                        `productImage` = :imagePath
+                                        WHERE `productId` = :id";
+                                
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':product_model', $product_model);
+                                $stmt->bindParam(':product_name', $product_name);
+                                $stmt->bindParam(':product_price', $product_price);
+                                $stmt->bindParam(':imagePath', $uploadedFile);
+                                $stmt->bindParam(':id', $_GET['update']);
+                        
+                                if ($stmt->execute()) {
+                                    echo "<div class='admin-toolbar-container'>";
+                                    echo "<h2>UPDATE PRODUCT SUCCESSFULLY!</h2>";
+                                    echo "</div>";
+                                    echo "<script>setTimeout(function() { window.location.href = 'admin.php'; }, 1000);</script>";
+                                    exit();
+                                } else {
+                                    echo 'Lỗi SQL: ' . $stmt->errorInfo()[2];
+                                    exit();
+                                }
+                            } else {
+                                echo "Lỗi khi tải lên ảnh.";
+                                exit();
+                            }
+                        } else {
+                            // Lấy dữ liệu sản phẩm cần cập nhật từ cơ sở dữ liệu
+                            $id = $_GET['update'];
+                            $sql = "SELECT * FROM productdb WHERE productId=?";
                             $stmt = $conn->prepare($sql);
                             $stmt->execute([$id]);
+                            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                            if ($result === false) {
+                                echo "Không tìm thấy sản phẩm có ID là $id.";
+                                exit();
+                            }
                         ?>
 
-                            <div class="admin-toolbar-container">
-                                <h2>UPDATE PRODUCT SUCCESSFULLY!</h2>
+                        <h2>UPDATE PRODUCT</h2>
+                        <p>Please change product information in this form and submit to update product to the database.
+                        </p>
+                        <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control"
+                                    value="<?= $result['productName'] ?>">
                             </div>
-                            <script>
-                                setTimeout(function() {
-                                    window.location.href = "admin.php";
-                                }, 1000); // Delay in milliseconds
-                            </script>
-
-                        <?php        } else { ?>
-
-
-
-                            <h2>UPDATE PRODUCT</h2>
-                            <p>Please change product information in this form and submit to update product to the database.</p>
-                            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
-                                <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" class="form-control" value="<?= $result['productName'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Model</label>
-                                    <input type="text" name="model" class="form-control" value="<?= $result['productModel'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Price</label>
-                                    <input type="text" name="price" class="form-control" value="<?= $result['productPrice'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input type="file" name="image" />
-                                </div>
-                                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
-                            </form>
+                            <div class="form-group">
+                                <label>Model</label>
+                                <input type="text" name="model" class="form-control"
+                                    value="<?= $result['productModel'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Price</label>
+                                <input type="text" name="price" class="form-control"
+                                    value="<?= $result['productPrice'] ?>">
+                            </div>
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" name="image" />
+                            </div>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                        </form>
                         <?php } ?>
                     </div>
 

@@ -50,6 +50,12 @@ if (isset($_SESSION['username'])) {
             <div class="toplinks">
                 <a class="ta" data-tab-target="#content-contact" href="index.php">Contact us</a>
             </div>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
+            <div class="sap">|</div>
+            <div class="toplinks">
+                <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
+            </div>
+            <?php } ?>
 
             <div class="member">
                 <div class="toplinks">
@@ -57,29 +63,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php  } else { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php } ?>
 
 
@@ -101,14 +107,14 @@ if (isset($_SESSION['username'])) {
                         $sql = 'DELETE FROM userdb WHERE is_admin=0';
                         $stmt = $conn->query($sql); ?>
 
-                        <div class="admin-toolbar-container">
-                            <h2>DELETE ALL USERS SUCCESSFULLY!</h2>
-                        </div>
-                        <script>
-                            setTimeout(function() {
-                                window.location.href = "admin.php";
-                            }, 1000); // Delay in milliseconds
-                        </script>
+                    <div class="admin-toolbar-container">
+                        <h2>DELETE ALL USERS SUCCESSFULLY!</h2>
+                    </div>
+                    <script>
+                    setTimeout(function() {
+                        window.location.href = "admin.php";
+                    }, 1000); // Delay in milliseconds
+                    </script>
 
                     <?php        } catch (Exception $e) {
                         die('SQL Error:' . $e->getMessage());

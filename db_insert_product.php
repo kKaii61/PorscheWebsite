@@ -50,6 +50,12 @@ if (isset($_SESSION['username'])) {
             <div class="toplinks">
                 <a class="ta" data-tab-target="#content-contact" href="index.php">Contact us</a>
             </div>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
+            <div class="sap">|</div>
+            <div class="toplinks">
+                <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
+            </div>
+            <?php } ?>
 
             <div class="member">
                 <div class="toplinks">
@@ -57,29 +63,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php  } else { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php } ?>
 
 
@@ -98,26 +104,44 @@ if (isset($_SESSION['username'])) {
                     <div class="admin-toolbar-container">
                         <?php
                         require('db_conn.php');
+
                         if (isset($_POST['submit'])) {
-                            $product_name = trim(stripslashes($_POST['name']));
-                            $product_model = trim(stripslashes($_POST['model']));
-                            $product_price = trim(stripslashes($_POST['price']));
-                            $product_image = trim(stripslashes($_POST['image']));
-                            $sql = "INSERT INTO `productdb` (`productId`, `productModel`, `productName`, `productPrice`, `productImage`)
-                             VALUES (NULL, '$product_model', '$product_name', '$product_price', '$product_image')";
-                            $stmt = $conn->exec($sql);
-                        ?>
-
-                            <div class="admin-toolbar-container">
-                                <h2>INSERT PRODUCT SUCCESSFULLY!</h2>
-                            </div>
-                            <script>
-                                setTimeout(function() {
-                                    window.location.href = "admin.php";
-                                }, 1000); // Delay in milliseconds
-                            </script>
-
-                        <?php        } else { ?>
+                            // Bước 2: Xác định đường dẫn lưu trữ ảnh trên máy chủ
+                            $uploadDir = "./Images/";
+                            $uploadedFile = $uploadDir . basename($_FILES["image"]["name"]);
+                            
+                            // Bước 3: Di chuyển tệp ảnh đã tải lên vào thư mục lưu trữ
+                            if (move_uploaded_file($_FILES["image"]["tmp_name"], $uploadedFile)) {
+                                // Bước 4: Sử dụng câu lệnh chuẩn bị để tránh SQL Injection
+                                $product_name = trim(stripslashes($_POST['name']));
+                                $product_model = trim(stripslashes($_POST['model']));
+                                $product_price = trim(stripslashes($_POST['price']));
+                                
+                                // Bước 5: Lưu đường dẫn hình ảnh vào cơ sở dữ liệu
+                                $sql = "INSERT INTO `productdb` (`productId`, `productModel`, `productName`, `productPrice`, `productImage`)
+                                        VALUES (NULL, :product_model, :product_name, :product_price, :imagePath)";
+                                
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':product_model', $product_model);
+                                $stmt->bindParam(':product_name', $product_name);
+                                $stmt->bindParam(':product_price', $product_price);
+                                $stmt->bindParam(':imagePath', $uploadedFile);
+                        
+                                if ($stmt->execute()) {
+                                    echo "<div class='admin-toolbar-container'>";
+                                    echo "<h2>INSERT PRODUCT SUCCESSFULLY!</h2>";
+                                    echo "</div>";
+                                    echo "<script>setTimeout(function() { window.location.href = 'admin.php'; }, 1000);</script>";
+                                    exit();
+                                } else {
+                                    echo 'Lỗi SQL: ' . $stmt->errorInfo()[2];
+                                    exit();
+                                }
+                            } else {
+                                echo "Lỗi khi tải lên ảnh.";
+                                exit();
+                            }
+                        } else { ?>
 
 
 
