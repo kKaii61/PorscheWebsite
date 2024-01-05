@@ -172,6 +172,7 @@ if (isset($_SESSION['username'])) {
                                     <th>User ID</th>
                                     <th>Username</th>
                                     <th>Email</th>
+                                    <th>Admin</th>
                                     <th>Update</th>
                                 </tr>
 
@@ -187,6 +188,9 @@ if (isset($_SESSION['username'])) {
                                         </td>
                                         <td>
                                             <p class="user-email"><?= $user['email'] ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="user-admin"><?= $user['is_admin'] ?></p>
                                         </td>
                                         <td>
 
