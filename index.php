@@ -317,6 +317,7 @@ if (isset($_SESSION['username'])) {
             </div>
           </div>
           <!--PRODUCTS -->
+        
         </div>
       </div>
       <!-- SERVICES -->

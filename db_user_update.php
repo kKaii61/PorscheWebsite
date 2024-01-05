@@ -94,21 +94,29 @@ if (isset($_SESSION['username'])) {
             <!-- HOME -->
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="main">
+
                     <div class="admin-toolbar-container">
-                        <button class="admin-btn"><a href="db_insert.php">Insert Products</a></button>
-                    </div>
-                    <div class="admin-toolbar-container">
-                        <button class="admin-btn"><a href="db_delete_all_product.php">Delete All Product</a></button>
-                    </div>
-                    <div class="admin-toolbar-container">
-                        <button class="admin-btn"><a href="db_delete_all_user.php">Delete All User</a></button>
-                    </div>
-                    <div class="admin-toolbar-container">
-                        <button class="admin-btn"><a href="db_user_update.php">Update User</a></button>
+                        <?php
+                        require('db_conn.php');
+                        try {
+                            $sql = 'SELECT userId, username, email FROM userdb';
+                            $stmt = $conn->query($sql);
+                        } catch (Exception $e) {
+                            die('SQL Error:' . $e->getMessage());
+                        } ?>
+
+                        <?php foreach ($stmt as $user) { ?>
+                            <!-- -->
+                            <div class="product-card">
+                                <img src="./Images/user.png" alt="" class="product-img">
+                                <h3 class="user-id"><?= $user['userId'] ?></h3>
+                                <h5 class="user-name"><?= $user['username'] ?></h5>
+                                <h3 class="user-email"><?= $user['email'] ?></h3>
+                            </div>
+                        <?php  } ?>
                     </div>
 
-                    
-                    </div>
+                </div>
             </div>
 
 

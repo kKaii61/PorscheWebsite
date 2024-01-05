@@ -528,6 +528,13 @@ a:hover {
     
 }
 
+.admin-toolbar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .admin-toolbar-container a {
     text-decoration: none;
     font-size: 1.3rem;
