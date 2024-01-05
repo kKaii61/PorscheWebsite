@@ -23,3 +23,12 @@ tabs.forEach( tab => {
         target.classList.add('active');
     })
 })
+
+function showTable(tableId) {
+    // Ẩn tất cả các bảng
+    document.getElementById('product-table').style.display = 'none';
+    document.getElementById('user-table').style.display = 'none';
+
+    // Hiển thị bảng được chọn
+    document.getElementById(tableId).style.display = 'table';
+}
