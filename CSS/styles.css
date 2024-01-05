@@ -543,3 +543,7 @@ a:hover {
 .product-image {
     width: 200px;
 }
+
+table, th, td {
+  border:1px solid black;
+}

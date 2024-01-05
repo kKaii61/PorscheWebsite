@@ -93,7 +93,7 @@ if (isset($_SESSION['username'])) {
                   <script>
                 setTimeout(function() {
                 window.location.href = "index.php";
-                  }, 4000); // Delay in milliseconds (3 seconds in this example)
+                  }, 2000); // Delay in milliseconds (3 seconds in this example)
                   </script>
                   <?php
                   // header("Location: index.php");

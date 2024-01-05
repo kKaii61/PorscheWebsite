@@ -94,28 +94,53 @@ if (isset($_SESSION['username'])) {
             <!-- HOME -->
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="main">
-
                     <div class="admin-toolbar-container">
                         <?php
                         require('db_conn.php');
                         try {
-                            $sql = 'SELECT userId, username, email FROM userdb';
+                            $sql = 'SELECT userId, username, email, is_admin FROM userdb';
                             $stmt = $conn->query($sql);
                         } catch (Exception $e) {
                             die('SQL Error:' . $e->getMessage());
                         } ?>
+                        <div>
+                            <table style="width:100%">
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Update</th>
+                                </tr>
 
-                        <?php foreach ($stmt as $user) { ?>
-                            <!-- -->
-                            <div class="product-card">
-                                <img src="./Images/user.png" alt="" class="product-img">
-                                <h3 class="user-id"><?= $user['userId'] ?></h3>
-                                <h5 class="user-name"><?= $user['username'] ?></h5>
-                                <h3 class="user-email"><?= $user['email'] ?></h3>
-                            </div>
-                        <?php  } ?>
+                                <?php foreach ($stmt as $user) { ?>
+                                    <!-- -->
+
+                                    <tr>
+                                        <td>
+                                            <p class="user-id"><?= $user['userId'] ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="user-name"><?= $user['username'] ?></p>
+                                        </td>
+                                        <td>
+                                            <p class="user-email"><?= $user['email'] ?></p>
+                                        </td>
+                                        <td>
+
+                                            <form action="db_user_update.php" medthod="get">
+                                                <button type="submit" value="<?= $user['userId'] ?>" name="update_user">Update</button>
+                                            </form>
+                                            <form action="db_user_delete.php" medthod="get">
+                                                <button type="submit" value="<?= $user['userId'] ?>" name="delete_user">Delete</button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+
+                                <?php  } ?>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
             </div>
 

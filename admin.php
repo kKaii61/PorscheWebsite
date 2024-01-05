@@ -101,7 +101,7 @@ if (isset($_SESSION['username'])) {
                     
                         <button class="admin-btn"><a href="db_delete_all_user.php">Delete All User</a></button>
                     
-                        <button class="admin-btn"><a href="db_user_update.php">Update User</a></button>
+                        <button class="admin-btn"><a href="db_user.php">Update User</a></button>
                     </div>
 
                     
