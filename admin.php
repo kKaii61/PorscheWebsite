@@ -15,7 +15,10 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>21H1120041</title>
     <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js" defer>
+        showTable('product-table');
+
+    </script>
 </head>
 
 <body>

@@ -4,7 +4,7 @@ session_start();
 //include("auth_session.php");
 $name = "Guest";
 if (isset($_SESSION['username'])) {
-  $name = trim(stripslashes($_SESSION['username']));
+    $name = trim(stripslashes($_SESSION['username']));
 }
 ?>
 
@@ -52,10 +52,10 @@ if (isset($_SESSION['username'])) {
                 <a class="ta" data-tab-target="#content-contact" href="#contact">Contact us</a>
             </div>
             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
-            <div class="sap">|</div>
-            <div class="toplinks">
-                <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
-            </div>
+                <div class="sap">|</div>
+                <div class="toplinks">
+                    <a class="ta" data-tab-target="#content-contact" href="./admin.php">MANAGEMENT</a>
+                </div>
             <?php } ?>
 
 
@@ -65,29 +65,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                <!-- -->
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                </div>
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                </div>
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                </div>
-                <!-- -->
+                    <!-- -->
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                    </div>
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                    </div>
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                    </div>
+                    <!-- -->
                 <?php  } else { ?>
-                <!-- -->
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                </div>
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                </div>
-                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                </div>
-                <!-- -->
+                    <!-- -->
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                    </div>
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                    </div>
+                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                    </div>
+                    <!-- -->
                 <?php } ?>
 
 
@@ -120,8 +120,7 @@ if (isset($_SESSION['username'])) {
                         <h3>Taycan Turbo S</h3>
                         <div class="smaltext">
                             <a href="#">
-                                <img style="background-color: white" src="Images/Taycan-Turbo-S.png" alt="" width="150"
-                                    height="110" border="0" /></a>
+                                <img style="background-color: white" src="Images/Taycan-Turbo-S.png" alt="" width="150" height="110" border="0" /></a>
                             <div class="clear"></div>
                             The Porsche Taycan is a battery electric saloon and shooting
                             brake produced by German automobile ...
@@ -245,53 +244,45 @@ if (isset($_SESSION['username'])) {
                     <div class="category left">
                         <div class="category-list-container">
                             <label for="">
-                                <h2 style="margin: 0;">MODEL</h2>
+                                <p style="margin: 0;">Models</p>
                             </label>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/718.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/911.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/taycan.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/macan.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/panamera.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <button>
                                 <div class="category-img"><img src="./Images/categorylist/canyenne.svg" alt=""></div>
-                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg"
-                                        alt=""></div>
+                                <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
                             </button>
                             <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) { ?>
 
-                            <div class="btn-admin-container">
+
                                 <a href="admin.php">
                                     <button class="admin-btn">
-
-                                        <h2>update product</h2>
-
+                                        <p class="no-pad no-margin">Update Product</p>
                                     </button>
                                 </a>
-                            </div>
+
 
                             <?php } else { ?>
 
-                            <!-- -->
+                                <!-- -->
 
                             <?php } ?>
 
@@ -302,32 +293,31 @@ if (isset($_SESSION['username'])) {
                     <div class="product right">
                         <div class="product-list-container">
                             <?php
-              require('db_conn.php');
-              try {
-                $sql = 'SELECT productId,productModel, productName, productImage, productPrice FROM productdb';
-                $stmt = $conn->query($sql);
-              } catch (Exception $e) {
-                die('SQL Error:' . $e->getMessage());
-              } ?>
+                            require('db_conn.php');
+                            try {
+                                $sql = 'SELECT productId,productModel, productName, productImage, productPrice FROM productdb';
+                                $stmt = $conn->query($sql);
+                            } catch (Exception $e) {
+                                die('SQL Error:' . $e->getMessage());
+                            } ?>
 
                             <?php foreach ($stmt as $item) { ?>
-                            <!-- -->
-                            <div class="product-card">
-                                <img src="<?= $item['productImage'] ?>" alt="" class="product-img">
-                                <h5 class="product-name"><?= $item['productName'] ?></h5>
-                                <h3 class="product-price"><?= $item['productPrice'] ?></h3>
-                                <button><a href="">BUY NOW</a></button>
-                                <?php if (isset($_SESSION['is_admin'])) {
-                  ?>
-                                <form action="db_delete_product.php" method="get">
-                                    <button type="submit" value="<?= $item['productId'] ?>"
-                                        name="delete">DELETE</button>
-                                </form>
-                                <?php  } else { ?>
-
                                 <!-- -->
-                                <?php } ?>
-                            </div>
+                                <div class="product-card">
+                                    <img src="<?= $item['productImage'] ?>" alt="" class="product-img">
+                                    <h5 class="product-name"><?= $item['productName'] ?></h5>
+                                    <h3 class="product-price no-pad"><?= $item['productPrice'] ?></h3>
+                                    <button><a class="blck-clr" style="text-decoration: none;" href="">BUY NOW</a></button>
+                                    <?php if (isset($_SESSION['is_admin'])) {
+                                    ?>
+                                        <form action="db_delete_product.php" method="get">
+                                            <button type="submit" value="<?= $item['productId'] ?>" name="delete">DELETE</button>
+                                        </form>
+                                    <?php  } else { ?>
+
+                                        <!-- -->
+                                    <?php } ?>
+                                </div>
                             <?php } ?>
 
                         </div>
@@ -368,28 +358,22 @@ if (isset($_SESSION['username'])) {
                                     today</h2>
                             </div>
                             <div class="button-container">
-                                <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16"
-                                        width="16">
-                                        <use
-                                            xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-message">
+                                <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16" width="16">
+                                        <use xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-message">
                                         </use>
                                     </svg>Chat
                                 </h3>
                                 <div class="avaamo-chat-bot-container">
-                                    <div id="avaamo-chat-bot-button" class="sds-button--secondary contact-button"
-                                        trid="e877e18b-2cad-4ace-abb7-9225ea983fd4" trc="">Start chat</div>
+                                    <div id="avaamo-chat-bot-button" class="sds-button--secondary contact-button" trid="e877e18b-2cad-4ace-abb7-9225ea983fd4" trc="">Start chat</div>
                                 </div>
                             </div>
                             <div class="divider"></div>
                             <div class="button-container">
-                                <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16"
-                                        width="16">
-                                        <use
-                                            xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-mail">
+                                <h3 class="spark-heading-3 button-heading"><svg class="duotone contact-svg" height="16" width="16">
+                                        <use xlink:href="/svg/spritemap-45f421b6ebaae75d4813e9a2ac89dbe3.svg?vsn=d#duotone-mail">
                                         </use>
                                     </svg>Feedback</h3>
-                                <a class="sds-button--secondary contact-button" data-toggle="modal"
-                                    data-target="#qualtrics-modal" href="#" data-modal-registered="1">Leave feedback</a>
+                                <a class="sds-button--secondary contact-button" data-toggle="modal" data-target="#qualtrics-modal" href="#" data-modal-registered="1">Leave feedback</a>
                             </div>
                         </div>
                     </div>
