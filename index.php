@@ -1,6 +1,6 @@
 <?php
 session_start();
-print_r($_SESSION);
+// print_r($_SESSION);
 //include("auth_session.php");
 $name = "Guest";
 if (isset($_SESSION['username'])) {
@@ -319,7 +319,7 @@ if (isset($_SESSION['username'])) {
                                 <button><a href="">BUY NOW</a></button>
                                 <?php if (isset($_SESSION['is_admin'])) {
                   ?>
-                                <form action="db_delete_this.php" method="get">
+                                <form action="db_delete_product.php" method="get">
                                     <button type="submit" value="<?= $item['productId'] ?>"
                                         name="delete">DELETE</button>
                                 </form>

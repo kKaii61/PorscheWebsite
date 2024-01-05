@@ -94,53 +94,61 @@ if (isset($_SESSION['username'])) {
             <!-- HOME -->
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="main">
+
                     <div class="admin-toolbar-container">
                         <?php
                         require('db_conn.php');
-                        try {
-                            $sql = 'SELECT userId, username, email, is_admin FROM userdb';
-                            $stmt = $conn->query($sql);
-                        } catch (Exception $e) {
-                            die('SQL Error:' . $e->getMessage());
-                        } ?>
-                        <div>
-                            <table style="width:100%">
-                                <tr>
-                                    <th>User ID</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Update</th>
-                                </tr>
+                        $id = $_GET['update'];
+                        $sql = "SELECT * FROM userdb WHERE userId=?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->execute([$id]);
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC); // Fetch the result as an associative array
 
-                                <?php foreach ($stmt as $user) { ?>
-                                    <!-- -->
+                        if (isset($_POST['submit'])) {
+                            $username = trim(stripslashes($_POST['username']));
+                            $email = trim(stripslashes($_POST['email']));
+                            $admin = trim(stripslashes($_POST['admin']));
+                            $sql = "UPDATE userdb SET username = '$username', email = '$email', is_admin = '$admin' WHERE `userdb`.`userId` = ?;";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute([$id]);
+                        ?>
 
-                                    <tr>
-                                        <td>
-                                            <p class="user-id"><?= $user['userId'] ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="user-name"><?= $user['username'] ?></p>
-                                        </td>
-                                        <td>
-                                            <p class="user-email"><?= $user['email'] ?></p>
-                                        </td>
-                                        <td>
+                            <div class="admin-toolbar-container">
+                                <h2>UPDATE PRODUCT SUCCESSFULLY!</h2>
+                            </div>
+                            <script>
+                                setTimeout(function() {
+                                    window.location.href = "admin.php";
+                                }, 1000); // Delay in milliseconds
+                            </script>
 
-                                            <form action="db_user_update.php" medthod="get">
-                                                <button type="submit" value="<?= $user['userId'] ?>" name="update_user">Update</button>
-                                            </form>
-                                            <form action="db_user_delete.php" medthod="get">
-                                                <button type="submit" value="<?= $user['userId'] ?>" name="delete_user">Delete</button>
-                                            </form>
+                        <?php        } else { ?>
 
-                                        </td>
-                                    </tr>
 
-                                <?php  } ?>
-                            </table>
-                        </div>
+
+                            <h2>UPDATE USER</h2>
+                            <p>Please change product information in this form and submit to update product to the database.</p>
+                            <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" name="username" class="form-control" value="<?= $result['username'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>email</label>
+                                    <input type="text" name="email" class="form-control" value="<?= $result['email'] ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Admin?</label>
+                                    <input type="radio" id="true" name="admin" value="1">
+                                    <label for="true">Yes</label><br>
+                                    <input type="radio" id="false" name="admin" value="0">
+                                    <label for="false">No</label><br>
+                                </div>
+                                <input type="submit" class="btn btn-primary" name="submit" value="Submit">
+                            </form>
+                        <?php } ?>
                     </div>
+
                 </div>
             </div>
 

@@ -5,18 +5,6 @@ if (isset($_SESSION['username'])) {
 	$name = trim(stripslashes($_SESSION['username']));
 }
 
-class TableRows extends RecursiveIteratorIterator
-{
-	function __construct($it)
-	{
-		parent::__construct($it, self::LEAVES_ONLY);
-	}
-
-	function current()
-	{
-		return "<td style='width:150px;border:1px solid black;'>" . parent::current() . "</td>";
-	}
-}
 ?>
 
 <!DOCTYPE html>
@@ -37,11 +25,7 @@ class TableRows extends RecursiveIteratorIterator
             <source src="./video/bg-video.p4" type="video/mp4" />
             <!-- fix mp4 to the video tag upon-->
         </video>
-        <div id="logo-bg">
-            <img src="Images/Porsche-Logo.png" width="150" height="75" alt="" id="porsche-logo" />
-            <h1>Porsche</h1>
-            <span class="tag"> There is no substitute. </span>
-        </div>
+        <div id="logo-bg"></div>
         <div id="business"></div>
 
         <div class="clear"></div>
