@@ -57,29 +57,29 @@ if (isset($_SESSION['username'])) {
                 </div>
 
                 <?php if ($name !== "Guest") { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php  } else { ?>
-                    <!-- -->
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-                        <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
-                    </div>
-                    <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-                        <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-                    </div>
-                    <!-- -->
+                <!-- -->
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-login" href="./login.php">Login</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
+                    <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
+                </div>
+                <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
+                    <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+                </div>
+                <!-- -->
                 <?php } ?>
 
 
@@ -92,6 +92,7 @@ if (isset($_SESSION['username'])) {
             <!-- THE RIGHT COLUMN-->
 
             <!-- HOME -->
+            <!-- HOME -->
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="main">
                     <div class="admin-toolbar-container">
@@ -102,11 +103,113 @@ if (isset($_SESSION['username'])) {
                         <button class="admin-btn"><a href="db_delete_all_user.php">Delete All User</a></button>
                     
                         <button class="admin-btn"><a href="db_user.php">Update User</a></button>
+                        <button class="admin-btn" onclick="showTable('product-table')"><a href="#">Product
+                                Management</a></button>
+                        <button class="admin-btn" onclick="showTable('user-table')"><a href="#">User
+                                Management</a></button>
                     </div>
 
-                    
+                    <?php
+                        require('db_conn.php');
+
+                        try {
+                            $sql = 'SELECT productId, productModel, productName, productImage, productPrice FROM productdb';
+                            $stmt = $conn->query($sql);
+                            $productsExist = $stmt->rowCount() > 0;
+                        } catch (Exception $e) {
+                            die('SQL Error:' . $e->getMessage());
+                        }
+                    ?>
+
+                    <div class="have-products">
+                        <?php if ($productsExist) : ?>
+                        <div class="admin-toolbar-container">
+                            <button class="admin-btn"><a href="db_insert.php">Insert Products</a></button>
+                            <button class="admin-btn"><a href="db_delete_all_product.php">Delete All
+                                    Product</a></button>
+                            <button class="admin-btn"><a href="db_delete_all_user.php">Delete All User</a></button>
+                            <button class="admin-btn"><a href="db_user_update.php">Update User</a></button>
+                        </div>
+
+                        <table id="product-table" class="product-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <?php if (isset($_SESSION['is_admin'])) { ?>
+                                    <th>Action</th>
+                                    <?php } ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($stmt as $item) { ?>
+                                <tr>
+                                    <td><img src="<?= $item['productImage'] ?>" alt="" class="product-img"></td>
+                                    <td><?= $item['productName'] ?></td>
+                                    <td><?= $item['productPrice'] ?></td>
+                                    <?php if (isset($_SESSION['is_admin'])) { ?>
+                                    <td>
+                                        <form action="./db_update_product.php" method="get" style="display:inline;">
+                                            <button type="submit" value="<?= $item['productId'] ?>"
+                                                name="update">UPDATE</button>
+                                        </form>
+                                        <form action="./db_delete_product.php" method="get" style="display:inline;">
+                                            <button type="submit" value="<?= $item['productId'] ?>"
+                                                name="delete">DELETE</button>
+                                        </form>
+                                    </td>
+                                    <?php } ?>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        <?php else : ?>
+                        <p>Empty</p>
+                        <?php endif; ?>
+
+                        <table id="user-table" class="user-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <?php if (isset($_SESSION['is_admin'])) { ?>
+                                    <th>Action</th>
+                                    <?php } ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($stmt as $item) { ?>
+                                <tr>
+                                    <td><img src="<?= $item['productImage'] ?>" alt="" class="product-img"></td>
+                                    <td><?= $item['productName'] ?></td>
+                                    <td><?= $item['productPrice'] ?></td>
+                                    <?php if (isset($_SESSION['is_admin'])) { ?>
+                                    <td>
+                                        <form action="./db_update_product.php" method="get" style="display:inline;">
+                                            <button type="submit" value="<?= $item['productId'] ?>"
+                                                name="update">UPDATE</button>
+                                        </form>
+                                        <form action="./db_delete_product.php" method="get" style="display:inline;">
+                                            <button type="submit" value="<?= $item['productId'] ?>"
+                                                name="delete">DELETE</button>
+                                        </form>
+                                    </td>
+                                    <?php } ?>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+
                     </div>
+
+
+
+                </div>
             </div>
+
+
 
 
         </div>
