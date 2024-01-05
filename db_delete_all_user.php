@@ -104,7 +104,12 @@ if (isset($_SESSION['username'])) {
                         <div class="admin-toolbar-container">
                             <h2>DELETE ALL USERS SUCCESSFULLY!</h2>
                         </div>
-                        
+                        <script>
+                            setTimeout(function() {
+                                window.location.href = "admin.php";
+                            }, 1000); // Delay in milliseconds
+                        </script>
+
                     <?php        } catch (Exception $e) {
                         die('SQL Error:' . $e->getMessage());
                     }

@@ -193,7 +193,7 @@ if (isset($_SESSION['username'])) {
                                             <form action="db_update_user.php" medthod="get">
                                                 <button type="submit" value="<?= $user['userId'] ?>" name="update">Update</button>
                                             </form>
-                                            <form action="db_user_delete.php" medthod="get">
+                                            <form action="db_delete_user.php" medthod="get">
                                                 <button type="submit" value="<?= $user['userId'] ?>" name="delete">Delete</button>
                                             </form>
 
