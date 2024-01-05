@@ -282,7 +282,8 @@ if (isset($_SESSION['username'])) {
 
             </div>
           </div>
-
+          
+          <!--PRODUCTS -->
           <div class="product right">
             <div class="product-list-container">
               <?php
@@ -315,6 +316,7 @@ if (isset($_SESSION['username'])) {
 
             </div>
           </div>
+          <!--PRODUCTS -->
         </div>
       </div>
       <!-- SERVICES -->
