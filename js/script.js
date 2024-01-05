@@ -32,3 +32,5 @@ function showTable(tableId) {
     // Hiển thị bảng được chọn
     document.getElementById(tableId).style.display = 'table';
 }
+
+showTable('product-table');
