@@ -284,43 +284,34 @@ if (isset($_SESSION['username'])) {
           </div>
 
           <div class="product right">
-
             <div class="product-list-container">
               <?php
               require('db_conn.php');
-
-
               try {
                 $sql = 'SELECT productId,productModel, productName, productImage, productPrice FROM productdb';
-                // $sql = 'SELECT * FROM tin';
                 $stmt = $conn->query($sql);
               } catch (Exception $e) {
                 die('SQL Error:' . $e->getMessage());
-              }            ?>
+              } ?>
 
               <?php foreach ($stmt as $item) { ?>
-
                 <!-- -->
                 <div class="product-card">
                   <img src="./Images/718-Boxter.png" alt="" class="product-img">
                   <h5 class="product-name"><?= $item['productName'] ?></h5>
                   <h3 class="product-price"><?= $item['productPrice'] ?></h3>
                   <button><a href="">BUY NOW</a></button>
-
-
                   <?php if (isset($_SESSION['is_admin'])) {
-                     ?>
-
+                  ?>
                     <form action="db_delete_this.php" method="get">
-                      <button type="submit" value="<?=$item['productId']?>" name="delete">DELETE</button>
+                      <button type="submit" value="<?= $item['productId'] ?>" name="delete">DELETE</button>
                     </form>
-
                   <?php  } else { ?>
-                </div>
-                <!-- -->
-            <?php }
-                } ?>
 
+                    <!-- -->
+                  <?php } ?>
+                </div>
+                <?php } ?>
 
             </div>
           </div>

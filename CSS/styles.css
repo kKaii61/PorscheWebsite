@@ -420,13 +420,14 @@ a:hover {
     gap: 10px;
     align-items: center;
     justify-content: start;
+    flex-direction: row;
     display: flex;
     flex-wrap: wrap;
 }
 
 .product-card {
     width: 214px;
-    height: 200px;
+    height: 240px;
     border-radius: 2px;
     background-color: #90436a;
     text-align: center;
