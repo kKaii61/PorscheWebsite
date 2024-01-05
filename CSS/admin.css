@@ -1,0 +1,65 @@
+/* Thêm CSS cho bảng */
+.product-table,
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.product-table th,
+.product-table td,
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th,
+.user-table th {
+    background-color: #f2f2f2;
+}
+
+.product-img {
+    max-width: 100px; /* Đảm bảo ảnh không quá rộng */
+}
+
+.admin-btn {
+    background-color: #aa1416;
+}
+
+.admin-btn a {
+    text-decoration: none;
+    /* color:  #fefc0b; */
+    color: #cccccc;
+    
+}
+
+/* Thêm CSS để chia cột */
+.admin-toolbar-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-btn {
+    
+}
+
+/* Thêm CSS cho nút Delete All Product và Delete All User */
+.delete-all-btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.delete-all-btn-container button {
+    background-color: #ff5555;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-all-btn-container button:hover {
+    background-color: #ff0000;
+}

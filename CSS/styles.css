@@ -277,10 +277,10 @@ h3 {
 }
 
 #content-home img {
-    width: 150px;
+    width: 200px;
     border: 2px solid #cccccc;
-    margin: 10px;
-    float: right;
+    margin: 0px;
+    
 }
 
 #content-home h2,
@@ -514,7 +514,7 @@ a:hover {
 .category-list-container .admin-btn {
     display: flex;
     position: absolute;
-    /* text-align: center; */
+    
     width: 25.7%;
     height: 50px;
     bottom: 0;
@@ -583,15 +583,12 @@ a:hover {
     bottom: 0;
 }
 
-.admin-btn {
-    
-}
+
 
 .admin-toolbar-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+
 }
 
 .admin-toolbar-container a {
@@ -602,3 +599,105 @@ a:hover {
 .product-image {
     width: 200px;
 }
+
+/* Thêm CSS cho bảng */
+.product-table,
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td,
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+
+}
+
+.product-table th,
+.user-table th {
+    background-color: #aa1416;
+}
+
+
+.product-table td,
+.user-table td {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.user-table td:last-child {
+    width: 150px;
+}
+
+.product-img {
+    max-width: 200px; 
+    max-height: 200px; 
+    width: auto;
+    height: auto;
+}
+
+.admin-btn {
+    background-color: #aa1416;
+    margin: 10px 0;
+}
+
+
+.admin-btn .active {
+    color: rgb(222, 246, 150);
+    font-weight: 900;
+    text-shadow: 2px 2px red;
+}
+
+
+.admin-btn a {
+    text-decoration: none;
+    /* color:  #fefc0b; */
+    color: #cccccc;
+    font-size: 1.3rem;
+}
+
+.insert-product-btn-container {
+    display: flex;
+    justify-content: end;
+}
+
+.admin-btn.insert-product-btn a {
+    font-size: 1rem;   
+}
+
+
+
+
+
+
+
+
+
+/* Thêm CSS cho nút Delete All Product và Delete All User */
+.delete-all-btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.delete-all-btn-container button {
+    background-color: #ff5555;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-all-btn-container button:hover {
+    background-color: #ff0000;
+}
+
+.delete-btn-container {
+    display: flex;
+    justify-content: end;
+}
+
