@@ -5,15 +5,18 @@ if (isset($_SESSION['username'])) {
 	$name = trim(stripslashes($_SESSION['username']));
 }
 
-class TableRows extends RecursiveIteratorIterator {
-	function __construct($it) {
-	  parent::__construct($it, self::LEAVES_ONLY);
+class TableRows extends RecursiveIteratorIterator
+{
+	function __construct($it)
+	{
+		parent::__construct($it, self::LEAVES_ONLY);
 	}
 
-	function current() {
-	  return "<td style='width:150px;border:1px solid black;'>" . parent::current(). "</td>";
+	function current()
+	{
+		return "<td style='width:150px;border:1px solid black;'>" . parent::current() . "</td>";
 	}
-  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -93,11 +96,18 @@ class TableRows extends RecursiveIteratorIterator {
 				$password = trim(stripslashes($_POST['password']));
 				$sql    = "SELECT * FROM `userdb` WHERE username='$username'
              	AND password='" . md5($password) . "'";
-        		$stmt = $conn->query($sql);
+				$stmt = $conn->query($sql);
 
 
 				foreach ($stmt as $re) {
 					if ($re['username'] === $username && $re['password'] === md5($password)) {
+						if ($re['is_admin'] === 1) {
+							$_SESSION['is_admin'] = true;
+							$_SESSION['username'] = $username;
+							// Redirect to admin dashboard page
+							header("Location: admin.php");
+							exit();
+						}
 						$_SESSION['username'] = $username;
 						// Redirect to user dashboard page
 						header("Location: index.php");
@@ -121,7 +131,8 @@ class TableRows extends RecursiveIteratorIterator {
     align-self: center;
     background-color: rgb(251, 251, 251);
     border-radius: 5px;
-    border: solid black;">		<h3 style="color: red;" >NO USER FOUND!</h3>
+    border: solid black;">
+								<h3 style="color: red;">NO USER FOUND!</h3>
 							</div>
 							<form name="login" method="post" enctype="multipart/form-data" autocomplete="off">
 								<div>

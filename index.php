@@ -25,7 +25,7 @@ if (isset($_SESSION['username'])) {
       <source src="./video/bg-video.p4" type="video/mp4" />
       <!-- fix mp4 to the video tag upon-->
     </video>
-    
+
     <div id="logo-bg"></div>
     <div id="business"></div>
 
@@ -65,8 +65,8 @@ if (isset($_SESSION['username'])) {
             <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
           </div>
           <div style="width:50px; padding: 0; margin: 0;" class="toplinks">
-          <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-        </div>
+            <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+          </div>
           <!-- -->
         <?php  } else { ?>
           <!-- -->
@@ -77,12 +77,12 @@ if (isset($_SESSION['username'])) {
             <a class="ta" data-tab-target="#content-register" href="./register.php">Register</a>
           </div>
           <div style="width:50px; padding: 0; margin: 0;" class="toplinks hide">
-          <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
-        </div>
+            <a class="ta" data-tab-target="#content-register" href="logout.php">Logout</a>
+          </div>
           <!-- -->
         <?php } ?>
 
-        
+
       </div>
     </div>
     <div class="clear"></div>
@@ -262,63 +262,65 @@ if (isset($_SESSION['username'])) {
                 <div class="category-img"><img src="./Images/categorylist/canyenne.svg" alt=""></div>
                 <div class="category-arrow"><img src="./Images/categorylist/arrow-head-right.svg" alt=""></div>
               </button>
+              <?php if (isset($_SESSION['is_admin'])) { ?>
+
+                <div class="btn-admin-container">
+                  <a href="admin.php">
+                    <button class="admin-btn">
+
+                      <h2>update product</h2>
+
+                    </button>
+                  </a>
+                </div>
+
+              <?php } else { ?>
+
+                <!-- -->
+
+              <?php } ?>
+
             </div>
           </div>
 
           <div class="product right">
+
             <div class="product-list-container">
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
-              <div class="product-card">
-                <img src="./Images/718-Boxter.png" alt="" class="product-img">
-                <h5 class="product-name">718 Boxter</h3>
-              </div>
+              <?php
+              require('db_conn.php');
+
+
+              try {
+                $sql = 'SELECT productId,productModel, productName, productImage, productPrice FROM productdb';
+                // $sql = 'SELECT * FROM tin';
+                $stmt = $conn->query($sql);
+              } catch (Exception $e) {
+                die('SQL Error:' . $e->getMessage());
+              }            ?>
+
+              <?php foreach ($stmt as $item) { ?>
+
+                <!-- -->
+                <div class="product-card">
+                  <img src="./Images/718-Boxter.png" alt="" class="product-img">
+                  <h5 class="product-name"><?= $item['productName'] ?></h5>
+                  <h3 class="product-price"><?= $item['productPrice'] ?></h3>
+                  <button><a href="">BUY NOW</a></button>
+
+
+                  <?php if (isset($_SESSION['is_admin'])) {
+                     ?>
+
+                    <form action="db_delete_this.php" method="get">
+                      <button type="submit" value="<?=$item['productId']?>" name="delete">DELETE</button>
+                    </form>
+
+                  <?php  } else { ?>
+                </div>
+                <!-- -->
+            <?php }
+                } ?>
+
 
             </div>
           </div>

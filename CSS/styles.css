@@ -517,3 +517,21 @@ a:hover {
 .register-noti h3 {
     background-color: none;
 }
+
+.btn-admin-container {
+    position: absolute;
+    bottom: 0;
+}
+
+.admin-btn {
+    
+}
+
+.admin-toolbar-container a {
+    text-decoration: none;
+    font-size: 1.3rem;
+}
+
+.product-image {
+    width: 200px;
+}
