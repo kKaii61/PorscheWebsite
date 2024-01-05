@@ -313,7 +313,7 @@ if (isset($_SESSION['username'])) {
                             <?php foreach ($stmt as $item) { ?>
                             <!-- -->
                             <div class="product-card">
-                                <img src="./Images/718-Boxter.png" alt="" class="product-img">
+                                <img src="<?= $item['productImage'] ?>" alt="" class="product-img">
                                 <h5 class="product-name"><?= $item['productName'] ?></h5>
                                 <h3 class="product-price"><?= $item['productPrice'] ?></h3>
                                 <button><a href="">BUY NOW</a></button>
