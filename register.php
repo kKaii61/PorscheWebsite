@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>21H1120041</title>
+    <title>Porsche</title>
     <link rel="stylesheet" type="text/css" href="CSS/styles.css" />
     <script src="js/script.js" defer></script>
 </head>
@@ -89,9 +89,9 @@ if (isset($_SESSION['username'])) {
             <script>
             setTimeout(function() {
                 window.location.href = "index.php";
-                  }, 4000); // Delay in milliseconds (3 seconds in this example)
-                  </script>
-                  <?php
+            }, 4000); // Delay in milliseconds (3 seconds in this example)
+            </script>
+            <?php
                   // header("Location: index.php");
                   // exit();
         } else {
@@ -131,7 +131,7 @@ if (isset($_SESSION['username'])) {
                                     <a class="term" href="#" title="term of services">term of services</a>
                                 </label>
                             </div>
-                            <button type="submit" name="submit" value="Register">Register</button>
+                            <button type="submit" name="submit" value="Register" id="btn-register">Register</button>
                         </form>
 
                     </div>

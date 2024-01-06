@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>21H1120041</title>
+    <title>Porsche</title>
     <link rel="stylesheet" type="text/css" href="CSS/styles.css" />
     <script src="js/script.js" defer></script>
 </head>
