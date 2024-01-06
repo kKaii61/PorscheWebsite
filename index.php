@@ -314,7 +314,11 @@ if (isset($_SESSION['username'])) {
                                 <img src="<?= $item['productImage'] ?>" alt="" class="product-img">
                                 <h5 class="product-name"><?= $item['productName'] ?></h5>
                                 <h3 class="product-price no-pad"><?= $item['productPrice'] ?></h3>
-                                <button><a class="blck-clr" style="text-decoration: none;" href="">BUY NOW</a></button>
+                                <?php if ($name !== "Guest") { ?>
+                                <button><a class="blck-clr" style="text-decoration: none;" href="login.php">BUY NOW</a></button>
+                                <?php } else { ?>
+                                    <button><a class="blck-clr" style="text-decoration: none;" href="">BUY NOW</a></button>
+                                    <?php }?>
                                 <?php if (isset($_SESSION['is_admin'])) {
                                     ?>
                                 <form action="db_delete_product.php" method="get">
