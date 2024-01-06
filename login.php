@@ -13,8 +13,8 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>21H1120041</title>
-    <link rel="stylesheet" type="text/css" href="CSS/styles.css" />
+    <title>Porsche</title>
+    <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
     <script src="js/script.js" defer></script>
 </head>
 
@@ -128,7 +128,7 @@ if (isset($_SESSION['username'])) {
                                 <input type="password" name="password" id="password">
                             </div>
                             <section>
-                                <button type="submit" value="Login" name="submit">Login</button>
+                                <button type="submit" value="Login" name="submit" id="btn-login">Login</button>
                             </section>
                         </form>
                     </div>
@@ -155,9 +155,9 @@ if (isset($_SESSION['username'])) {
                                 <label for="password">Password:</label>
                                 <input type="password" name="password" id="password">
                             </div>
-                            <section>
-                                <button type="submit" value="Login" name="submit">Login</button>
-                            </section>
+
+                            <button type="submit" value="Login" name="submit" id="btn-login">Login</button>
+
                         </form>
                     </div>
                 </div>

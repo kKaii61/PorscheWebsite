@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>21H1120041</title>
+    <title>Porsche</title>
     <link rel="stylesheet" type="text/css" href="./CSS/styles.css" />
     <script src="js/script.js" defer>
     showTable('product-table');
@@ -100,13 +100,14 @@ if (isset($_SESSION['username'])) {
             <!-- THE RIGHT COLUMN-->
 
             <!-- HOME -->
-            <!-- HOME -->
+
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="admin">
                     <div class="admin-toolbar-container">
-                        <button class="admin-btn active" onclick="showTable('product-table')"><a href="#">Product
+                        <button class="admin-btn active" onclick="showTable('.product-table-container', this)"><a
+                                href="#">Product
                                 Management</a></button>
-                        <button class="admin-btn" onclick="showTable('user-table')"><a href="#">User
+                        <button class="admin-btn" onclick="showTable('.user-table-container', this)"><a href="#">User
                                 Management</a></button>
                     </div>
 
@@ -126,49 +127,53 @@ if (isset($_SESSION['username'])) {
 
                         <?php if ($productsExist) : ?>
 
-                        <div class="insert-product-btn-container">
-                            <button class="admin-btn insert-product-btn"><a href="db_insert_product.php">Insert
-                                    Products</a></button>
+                        <div class="product-table-container">
+                            <div class="insert-product-btn-container">
+                                <button class="admin-btn insert-product-btn"><a href="db_insert_product.php">Insert
+                                        Products</a></button>
+                            </div>
+                            <table id="product-table" class="product-table">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <?php if (isset($_SESSION['is_admin'])) { ?>
+                                        <th>Action</th>
+                                        <?php } ?>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($stmt as $item) { ?>
+                                    <tr>
+                                        <td><img src="<?= $item['productImage'] ?>" alt="" class="product-img"></td>
+                                        <td><?= $item['productName'] ?></td>
+                                        <td><?= $item['productPrice'] ?></td>
+                                        <?php if (isset($_SESSION['is_admin'])) { ?>
+                                        <td>
+                                            <form action="./db_update_product.php" method="get" style="display:inline;">
+                                                <button type="submit" value="<?= $item['productId'] ?>"
+                                                    name="update">UPDATE</button>
+                                            </form>
+                                            <form action="./db_delete_product.php" method="get" style="display:inline;">
+                                                <button type="submit" value="<?= $item['productId'] ?>"
+                                                    name="delete">DELETE</button>
+                                            </form>
+                                        </td>
+                                        <?php } ?>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                            <div class="delete-btn-container">
+                                <button class="admin-btn"><a href="db_delete_all_product.php">Delete All
+                                        Product</a></button>
+                            </div>
                         </div>
-                        <table id="product-table" class="product-table">
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <?php if (isset($_SESSION['is_admin'])) { ?>
-                                    <th>Action</th>
-                                    <?php } ?>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($stmt as $item) { ?>
-                                <tr>
-                                    <td><img src="<?= $item['productImage'] ?>" alt="" class="product-img"></td>
-                                    <td><?= $item['productName'] ?></td>
-                                    <td><?= $item['productPrice'] ?></td>
-                                    <?php if (isset($_SESSION['is_admin'])) { ?>
-                                    <td>
-                                        <form action="./db_update_product.php" method="get" style="display:inline;">
-                                            <button type="submit" value="<?= $item['productId'] ?>"
-                                                name="update">UPDATE</button>
-                                        </form>
-                                        <form action="./db_delete_product.php" method="get" style="display:inline;">
-                                            <button type="submit" value="<?= $item['productId'] ?>"
-                                                name="delete">DELETE</button>
-                                        </form>
-                                    </td>
-                                    <?php } ?>
-                                </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+
                         <?php else : ?>
                         <div class="admin-toolbar-container">
                             <button class="admin-btn"><a href="db_insert_product.php">Insert Products</a></button>
-                            <button class="admin-btn hide"><a href="db_delete_all_product.php">Delete All
-                                    Product</a></button>
-                            <button class="admin-btn hide"><a href="db_delete_all_user.php">Delete All User</a></button>
                         </div>
                         <p>Empty</p>
                         <?php endif; ?>
@@ -182,8 +187,8 @@ if (isset($_SESSION['username'])) {
                         } catch (Exception $e) {
                             die('SQL Error:' . $e->getMessage());
                         } ?>
-                        <div>
-                            <table style="width:100%" id="user-table" class="user-table">
+                        <div class="user-table-container">
+                            <table style="width:100%; margin-top:20px;" id="user-table" class="user-table">
                                 <tr>
                                     <th>User ID</th>
                                     <th>Username</th>
@@ -225,12 +230,13 @@ if (isset($_SESSION['username'])) {
                                 <?php  } ?>
                             </table>
                             <div class="delete-btn-container">
-                                <button class="admin-btn"><a href="db_delete_all_product.php">Delete All
-                                        Product</a></button>
                                 <button class="admin-btn"><a href="db_delete_all_user.php">Delete All User</a></button>
                             </div>
-                            <!--  -->
                         </div>
+
+
+                        <!--  -->
+
 
 
 
