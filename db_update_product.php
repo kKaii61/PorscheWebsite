@@ -101,7 +101,7 @@ if (isset($_SESSION['username'])) {
             <div id="content-home" data-tab-content class="main-content active">
                 <div id="main">
 
-                    <div class="admin-toolbar-container">
+                    <div class="update-toolbar-container">
                         <?php
                         require('db_conn.php');
 

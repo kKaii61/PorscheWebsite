@@ -24,13 +24,20 @@ tabs.forEach( tab => {
     })
 })
 
-function showTable(tableId) {
+function showTable(tableId, button) {
+     // Loại bỏ lớp "active" từ tất cả các nút
+     const buttons = document.querySelectorAll('.admin-btn');
+     buttons.forEach(btn => btn.classList.remove('active'));
+ 
+     // Thêm lớp "active" cho nút được chọn
+    button.classList.add('active');
+ 
     // Ẩn tất cả các bảng
-    document.getElementById('product-table').style.display = 'none';
-    document.getElementById('user-table').style.display = 'none';
+    document.querySelector('.product-table-container').style.display = 'none';
+    document.querySelector('.user-table-container').style.display = 'none';
 
     // Hiển thị bảng được chọn
-    document.getElementById(tableId).style.display = 'table';
+    document.querySelector(tableId).style.display = 'block';
 }
 
-showTable('product-table');
+showTable('.product-table-container', document.querySelector('.admin-btn.active'));
