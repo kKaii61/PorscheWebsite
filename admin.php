@@ -102,7 +102,7 @@ if (isset($_SESSION['username'])) {
             <!-- HOME -->
             <!-- HOME -->
             <div id="content-home" data-tab-content class="main-content active">
-                <div id="main">
+                <div id="admin">
                     <div class="admin-toolbar-container">
                         <button class="admin-btn active" onclick="showTable('product-table')"><a href="#">Product
                                 Management</a></button>

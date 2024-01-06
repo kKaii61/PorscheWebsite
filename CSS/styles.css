@@ -294,7 +294,6 @@ h3 {
 #main {
     text-align: justify;
     padding: 5px 15px;
-    text-decoration: none;
 }
 
 .login-containter,
@@ -514,7 +513,6 @@ a:hover {
 .category-list-container .admin-btn {
     display: flex;
     position: absolute;
-    
     width: 25.7%;
     height: 50px;
     bottom: 0;
@@ -583,8 +581,6 @@ a:hover {
     bottom: 0;
 }
 
-
-
 .admin-toolbar-container {
     display: flex;
     justify-content: space-around;
@@ -601,10 +597,15 @@ a:hover {
 }
 
 /* Thêm CSS cho bảng */
+.have-products{
+
+}
+
 .product-table,
 .user-table {
-    width: 100%;
+    width: 99%;
     border-collapse: collapse;
+    margin: 5px;
 }
 
 .product-table th,
@@ -642,16 +643,14 @@ a:hover {
 
 .admin-btn {
     background-color: #aa1416;
-    margin: 10px 0;
+    margin: 10px 5px;
 }
-
 
 .admin-btn .active {
     color: rgb(222, 246, 150);
     font-weight: 900;
     text-shadow: 2px 2px red;
 }
-
 
 .admin-btn a {
     text-decoration: none;
@@ -668,13 +667,6 @@ a:hover {
 .admin-btn.insert-product-btn a {
     font-size: 1rem;   
 }
-
-
-
-
-
-
-
 
 
 /* Thêm CSS cho nút Delete All Product và Delete All User */
@@ -701,3 +693,10 @@ a:hover {
     justify-content: end;
 }
 
+#admin {
+    max-width: 923px;
+    width: 923px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
